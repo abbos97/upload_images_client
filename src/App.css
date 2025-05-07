@@ -1,38 +1,169 @@
-.App {
-  text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.header {
+    width: 100%;
+    background-color: bisque;
+    
+}
+.nav {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+    width: 85%;
+    margin: 0 auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+ul {
+    display: flex;
+
 }
 
-.App-link {
-  color: #61dafb;
+ul li {
+    margin: 0 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ul li a, a {
+    color: #000;
+
+}
+
+
+.active-link {
+    color: blue;
+}
+
+ul li:last-child {
+    margin-right: 0;
+}
+
+.col-2 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+
+.col-2 div {
+    width: 50%;
+}
+
+.child-1 {
+    width: 100%;
+    padding-right: 40px;
+    margin-top: 20px;
+}
+
+.child-1 .title {
+    width: 100%;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.child-1 p {
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.child-2 {
+    position: relative;
+}
+
+.btn-local {
+    padding: 10px 25px;
+    background: #fff;
+    color: #000;
+    border-radius: 8px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+
+}
+
+.local {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.local .title {
+    font-size: 2rem;
+    margin-bottom: 100px;
+    
+}
+
+.upload-image-btn {
+    width: 200px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.send-image-btn {
+    background: #000;
+    color: #fff;
+    width: 200px;
+    border: none;
+    border-radius: 8px;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.preview-upload {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.preview {
+    background: #f1f1f1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    max-width: 800px;
+}
+
+.preview img {
+    object-fit: cover;
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+}
+
+.uploaded-box {
+    column-count: 4;
+  column-gap: 20px;
+  padding: 20px;
+}
+
+.uploaded-box img {
+    width: 100%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
 }
