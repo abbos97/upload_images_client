@@ -16,7 +16,7 @@ function LocalPage() {
         const formData = new FormData()
 
         for(let i = 0; i < files.length; i++) {
-            formData.append('localImages', files[i])
+            formData.append('images', files[i])
         }
         console.log(formData)
         try {
@@ -25,7 +25,7 @@ function LocalPage() {
                     "Content-Type": "multipart/form-data"
                 }
             })
-            if(res.status === 200) {
+            if(res.data.success === true) {
                 setImages(pre => [...pre, ...res.data.data.images])
                 setPreviewUrl([])
                 setFiles([])
@@ -49,7 +49,10 @@ function LocalPage() {
         const getImages = async () => {
             try {
                 const res = await axios.get("http://localhost:3009/api/local/images")
-
+                
+                if(!res.data.success) {
+                    return alert(res.data.message || "Somtheng went wrong getting data")
+                }
                 setImages(res.data.data.images)
             }catch(err) {
                 console.log(err.message)
@@ -58,6 +61,20 @@ function LocalPage() {
 
         getImages()
     }, [])
+
+
+    const handleTrash = async (ele) => {
+        try {
+            const res = await axios.delete(`http://localhost:3009/api/local/image/${ele}`)
+             if(res.data.success !== true) {
+                return alert("Somtheng went wrong!")
+            }
+            setImages(pre => pre.filter(img => img !== ele))
+            alert("Image deleted successfully")
+        }catch(err) {
+            console.log({error: err.message})
+        }
+    }
 
     const api = `http://localhost:3009/uploads`
     return (
@@ -83,13 +100,32 @@ function LocalPage() {
                 </div>
                     <p style={{marginTop: '100px'}}>Uploaded images</p>
                 <div className="uploaded-box ">
-                {Array.isArray(images) && images.length === 0 ? <img src={"/images/sw.svg"} alt="empty" style={{
+                {Array.isArray(images) && images?.length === 0 ? <img src={"/images/sw.svg"} alt="empty" style={{
                     width: '100%',
                     margin: "0 auto",
                     textAlign: 'center'
                 }}/> : (
-                    images?.map((ele, i) => (
-                        <img src={`${api}/${ele}`} key={i} alt={i} />
+                    Array.isArray(images) && images?.map((ele, i) => (
+                        <div className="trash-box" style={{
+                            position: "relative"
+                        }}>
+                            <img src={`${api}/${ele}`} key={i} alt={i} />
+                            <div style={{
+                                position: "absolute",
+                                width: '50px',
+                                height: "50px",
+                                borderRadius: "25px",
+                                background: "#fff",
+                                bottom: "10px",
+                                right: "10px",
+                                cursor: "pointer",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center"
+                            }} className="trash" onClick={() => handleTrash(ele)}>
+                                 <img src="images/trash.png" alt="trash" style={{ width: "30px", height: "auto", marginBottom: "0"}}/>
+                            </div> 
+                        </div>
                     ))
                 )}
                 </div>

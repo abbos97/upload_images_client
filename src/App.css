@@ -10,7 +10,7 @@
 
 .header {
     width: 100%;
-    background-color: bisque;
+    background-color: #000;
     
 }
 .nav {
@@ -35,13 +35,13 @@ ul li {
 }
 
 ul li a, a {
-    color: #000;
+    color: #fff;
 
 }
 
 
 .active-link {
-    color: blue;
+    color: rgb(162, 162, 255);
 }
 
 ul li:last-child {
@@ -131,6 +131,13 @@ ul li:last-child {
     border-radius: 8px;
     height: 40px;
     margin-top: 10px;
+    cursor: pointer;
+}
+
+.send-image-btn:hover {
+    background: #fff;
+    border: 2px solid #000;
+    color: #000;
 }
 
 .preview-upload {
@@ -166,4 +173,12 @@ ul li:last-child {
   border-radius: 10px;
   object-fit: cover;
   display: block;
+}
+
+.trash {
+    visibility: hidden;
+}
+
+.trash-box:hover .trash {
+    visibility: visible;
 }
