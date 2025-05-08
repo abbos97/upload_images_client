@@ -106,7 +106,7 @@ function LocalPage() {
                     textAlign: 'center'
                 }}/> : (
                     Array.isArray(images) && images?.map((ele, i) => (
-                        <div className="trash-box" style={{
+                        <div key={i} className="trash-box" style={{
                             position: "relative"
                         }}>
                             <img src={`${api}/${ele}`} key={i} alt={i} />
